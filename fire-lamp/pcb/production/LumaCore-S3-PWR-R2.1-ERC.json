@@ -1,0 +1,19 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-15T11:24:45",
+    "ignored_checks": [],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.3",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/0f90087d-7193-4cf3-a13b-061ce09665fe",
+            "violations": []
+        }
+    ],
+    "source": "LumaCore-S3-PWR.kicad_sch"
+}
