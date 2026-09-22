@@ -2,6 +2,18 @@
 
 Электроника Fire Lamp построена на контроллере LumaCore-S3-PWR.
 
+## Рендеры платы
+
+### Верхняя сторона
+
+![LumaCore-S3-PWR R2.1 — верхняя сторона](renders/LumaCore-S3-PWR-R2.1-3D-Top.png)
+
+### Нижняя сторона
+
+![LumaCore-S3-PWR R2.1 — нижняя сторона](renders/LumaCore-S3-PWR-R2.1-3D-Bottom.png)
+
+## Исходники
+
 В каталоге `source/` находятся исходники KiCad:
 
 - проект;
