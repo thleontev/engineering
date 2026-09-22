@@ -61,6 +61,17 @@ Fire Lamp — настольный адресный LED-светильник с 
 
 - [Сборка Fire Lamp R1.2 в формате STEP](cad/fire-lamp-assembly.step)
 
+## Галерея
+
+Изображения Fire Lamp для маркетплейса. Нажмите на изображение, чтобы открыть оригинал.
+
+| | |
+| --- | --- |
+| [![Fire Lamp — общий вид](media/images/marketplace/1.png)](media/images/marketplace/1.png) | [![Управление светом](media/images/marketplace/2.png)](media/images/marketplace/2.png) |
+| [![Автоматический ночник](media/images/marketplace/3.png)](media/images/marketplace/3.png) | [![Светомузыка](media/images/marketplace/4.png)](media/images/marketplace/4.png) |
+| [![Управление через приложение](media/images/marketplace/5.png)](media/images/marketplace/5.png) | [![Буклет Fire Lamp](media/images/marketplace/6.png)](media/images/marketplace/6.png) |
+| [![Fire Lamp в интерьере](media/images/marketplace/7.png)](media/images/marketplace/7.png) | [![Интеграция с Home Assistant](media/images/marketplace/8.png)](media/images/marketplace/8.png) |
+
 ## Видео
 
 - [Видео history.mp4](media/video/history.mp4)
