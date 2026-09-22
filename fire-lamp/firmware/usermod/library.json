@@ -1,0 +1,28 @@
+{
+  "name": "LumaCorePIRBH1750",
+  "version": "0.1.0",
+  "description": "LumaCore WLED usermod for BH1750 ambient light sensor and PIR motion control with manual override and smooth transitions.",
+  "keywords": [
+    "wled",
+    "usermod",
+    "lumacore",
+    "bh1750",
+    "pir",
+    "motion",
+    "ambient-light"
+  ],
+  "authors": [
+    {
+      "name": "LumaCore"
+    }
+  ],
+  "license": "MIT",
+  "frameworks": "arduino",
+  "platforms": [
+    "espressif32"
+  ],
+  "build": {
+    "srcDir": ".",
+    "libArchive": false
+  }
+}
