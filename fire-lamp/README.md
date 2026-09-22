@@ -63,14 +63,14 @@ Fire Lamp — настольный адресный LED-светильник с 
 
 ## Галерея
 
-Изображения Fire Lamp для маркетплейса. Нажмите на изображение, чтобы открыть оригинал.
+Изображения Fire Lamp. Нажмите на изображение, чтобы открыть оригинал.
 
 | | |
 | --- | --- |
-| [![Fire Lamp — общий вид](media/images/marketplace/1.png)](media/images/marketplace/1.png) | [![Управление светом](media/images/marketplace/2.png)](media/images/marketplace/2.png) |
-| [![Автоматический ночник](media/images/marketplace/3.png)](media/images/marketplace/3.png) | [![Светомузыка](media/images/marketplace/4.png)](media/images/marketplace/4.png) |
-| [![Управление через приложение](media/images/marketplace/5.png)](media/images/marketplace/5.png) | [![Буклет Fire Lamp](media/images/marketplace/6.png)](media/images/marketplace/6.png) |
-| [![Fire Lamp в интерьере](media/images/marketplace/7.png)](media/images/marketplace/7.png) | [![Интеграция с Home Assistant](media/images/marketplace/8.png)](media/images/marketplace/8.png) |
+| [![Fire Lamp — общий вид](media/images/1.png)](media/images/1.png) | [![Управление светом](media/images/2.png)](media/images/2.png) |
+| [![Автоматический ночник](media/images/3.png)](media/images/3.png) | [![Светомузыка](media/images/4.png)](media/images/4.png) |
+| [![Управление через приложение](media/images/5.png)](media/images/5.png) | [![Буклет Fire Lamp](media/images/6.png)](media/images/6.png) |
+| [![Fire Lamp в интерьере](media/images/7.png)](media/images/7.png) | [![Интеграция с Home Assistant](media/images/8.png)](media/images/8.png) |
 
 ## Видео
 
