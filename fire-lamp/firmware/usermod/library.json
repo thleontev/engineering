@@ -1,15 +1,16 @@
 {
   "name": "LumaCorePIRBH1750",
-  "version": "0.1.0",
-  "description": "LumaCore WLED usermod for BH1750 ambient light sensor and PIR motion control with manual override and smooth transitions.",
+  "version": "0.2.0",
+  "description": "Public WLED AutoNightLight usermod: PIR motion and VEML7700 ambient-light control with optional BH1750 legacy support.",
   "keywords": [
     "wled",
     "usermod",
     "lumacore",
+    "veml7700",
     "bh1750",
     "pir",
-    "motion",
-    "ambient-light"
+    "ambient-light",
+    "nightlight"
   ],
   "authors": [
     {

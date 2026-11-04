@@ -1,10 +1,9 @@
+#include "lumacore_light_scale.h"
 #include "usermod_lumacore_pir_bh1750.h"
 
 #include <Wire.h>
+#include "lumacore_night_scene.h"
 
-static constexpr uint8_t BH1750_POWER_ON = 0x01;
-static constexpr uint8_t BH1750_RESET = 0x07;
-static constexpr uint8_t BH1750_CONTINUOUS_HIGH_RES_MODE = 0x10;
 static constexpr uint16_t LUMACORE_PIR_CHECK_INTERVAL_MS = 100;
 bool LumaCorePirBh1750Usermod::initI2c()
 {
@@ -22,44 +21,23 @@ bool LumaCorePirBh1750Usermod::initI2c()
   i2cPinsAllocated = true;
   Wire.begin(sdaPin, sclPin);
   Wire.setClock(100000);
+#ifdef ARDUINO_ARCH_ESP32
+  Wire.setTimeOut(50);
+#endif
   return true;
 }
 
-bool LumaCorePirBh1750Usermod::writeBh1750Command(uint8_t command)
+// Synchronize one selected sensor snapshot with PIR and OTA logic.
+// Do not reuse an old lux value after a disconnect, range change or timeout.
+void LumaCorePirBh1750Usermod::syncLightReading(uint32_t now)
 {
-  Wire.beginTransmission(bh1750Address);
-  Wire.write(command);
-  return Wire.endTransmission() == 0;
-}
-
-bool LumaCorePirBh1750Usermod::initBh1750()
-{
-  if (!writeBh1750Command(BH1750_POWER_ON)) return false;
-  writeBh1750Command(BH1750_RESET);
-  return writeBh1750Command(BH1750_CONTINUOUS_HIGH_RES_MODE);
-}
-
-bool LumaCorePirBh1750Usermod::readBh1750Lux()
-{
-  if (!sensorFound) {
-    sensorFound = initBh1750();
-    if (!sensorFound) {
-      luxValid = false;
-      return false;
-    }
+  const bool previouslyPresent = sensorFound;
+  sensorFound = ambientLight.present();
+  luxValid = enabled && ambientLight.fresh(now, static_cast<uint32_t>(luxReadIntervalMs) * 2U + 500U);
+  if (luxValid) {
+    lastLux = ambientLight.reading().lux;
+    lastLuxRead = ambientLight.reading().sampledAt;
   }
-
-  uint8_t bytesRead = Wire.requestFrom(bh1750Address, static_cast<uint8_t>(2));
-  if (bytesRead != 2) {
-    sensorFound = false;
-    luxValid = false;
-    return false;
-  }
-
-  uint16_t raw = (static_cast<uint16_t>(Wire.read()) << 8) | Wire.read();
-  lastLux = raw / 1.2f;
-  luxValid = true;
-  return true;
 }
 
 void LumaCorePirBh1750Usermod::readPir()
@@ -76,7 +54,7 @@ void LumaCorePirBh1750Usermod::readPir()
 
 bool LumaCorePirBh1750Usermod::isDark() const
 {
-  return luxValid && lastLux < luxThreshold;
+  return enabled && luxValid && ambientLight.fresh(millis(), static_cast<uint32_t>(luxReadIntervalMs) * 2U + 500U) && lastLux < luxThreshold;
 }
 
 bool LumaCorePirBh1750Usermod::isPirOwnedState() const
@@ -86,12 +64,19 @@ bool LumaCorePirBh1750Usermod::isPirOwnedState() const
 
 void LumaCorePirBh1750Usermod::setNightLightState(NightLightState newState)
 {
+  const NightLightState previousState = nightLightState;
   nightLightState = newState;
 
   if (newState == NightLightState::WaitingOff) {
     if (!offTimerStart) offTimerStart = millis();
   } else {
     offTimerStart = 0;
+  }
+
+  if (newState == NightLightState::ManualOverride) {
+    if (previousState != NightLightState::ManualOverride) manualOverrideStart = millis();
+  } else {
+    manualOverrideStart = 0;
   }
 }
 
@@ -149,7 +134,7 @@ bool LumaCorePirBh1750Usermod::restorePreviousStateKeepingOff()
   byte restoredPresetCyc = previousPresetCycCurr;
   int16_t restoredPlaylist = previousCurrentPlaylist;
 
-  DynamicJsonDocument stateDoc(JSON_BUFFER_SIZE);
+  PSRAMDynamicJsonDocument stateDoc(JSON_BUFFER_SIZE);
   DeserializationError error = deserializeJson(stateDoc, previousStateJson);
   if (error) {
     DEBUG_PRINTLN(F("LumaCore: could not deserialize previous state snapshot."));
@@ -195,21 +180,29 @@ void LumaCorePirBh1750Usermod::setOneShotTransition(uint8_t seconds)
 
 void LumaCorePirBh1750Usermod::switchOnByPir()
 {
-  if (bri > 0 || nightLightState != NightLightState::Idle) return;
+  if (bri > 0 || briT > 0 || nightLightState != NightLightState::Idle) return;
   if (!capturePreviousState()) return;
 
+    byte nightBrightness = briLast ? briLast : briS;
+  if (onPreset > 0) {
+    ownStateChange = true;
+    if (!lumacore::prepareNightPresetWhileDark(onPreset, nightBrightness)) {
+      ownStateChange = false;
+      clearPreviousState();
+      // Avoid repeated FS/NVS attempts while the same PIR level remains active.
+      setNightLightState(NightLightState::ManualOverride);
+      return;
+    }
+  }
+  // All segment changes are complete at zero output. Fade only this scene in.
   setOneShotTransition(transitionSec);
   ownStateChange = true;
-
-  if (onPreset > 0) {
-    applyPreset(onPreset, CALL_MODE_BUTTON_PRESET);
-  } else {
-    bri = briLast ? briLast : briS;
-    strip.restartRuntime();
-    stateChanged = true;
-    stateUpdated(CALL_MODE_BUTTON_PRESET);
-  }
-
+  bri = nightBrightness;
+  strip.restartRuntime();
+  stateChanged = true;
+  stateUpdated(CALL_MODE_BUTTON_PRESET);
+  if (onPreset > 0) currentPreset = presetCycCurr = onPreset;
+  
   setNightLightState(NightLightState::AutoOn);
 }
 
@@ -246,12 +239,16 @@ void LumaCorePirBh1750Usermod::handlePir()
     lastPirActive = pirActive;
   }
 
+  // Do not light up immediately after a power restoration with PIR held high.
+  // Motion must first become inactive and then active again in this boot.
+  if (!pirActive) motionArmedAfterBoot = true;
+
   switch (nightLightState) {
     case NightLightState::Disabled:
       return;
 
     case NightLightState::Idle:
-      if (!pirActive || !isDark() || bri > 0) return;
+      if (!motionArmedAfterBoot || !pirActive || !isDark() || bri > 0) return;
       switchOnByPir();
       return;
 
@@ -267,9 +264,12 @@ void LumaCorePirBh1750Usermod::handlePir()
       }
       break;
 
-    case NightLightState::ManualOverride:
-      if (!pirActive) setNightLightState(NightLightState::Idle);
+    case NightLightState::ManualOverride: {
+      const unsigned long pauseMs = static_cast<unsigned long>(manualOffPauseSec) * 1000UL;
+      const bool pauseExpired = manualOffPauseSec == 0 || millis() - manualOverrideStart >= pauseMs;
+      if (pauseExpired && !pirActive) setNightLightState(NightLightState::Idle);
       return;
+    }
   }
 
   if (nightLightState == NightLightState::WaitingOff && millis() - offTimerStart >= static_cast<unsigned long>(offDelaySec) * 1000UL) {
@@ -289,6 +289,7 @@ void LumaCorePirBh1750Usermod::releasePins(int8_t oldPirPin, int8_t oldSdaPin, i
   }
 }
 
+
 void LumaCorePirBh1750Usermod::setup()
 {
   pirPinAllocated = false;
@@ -299,6 +300,7 @@ void LumaCorePirBh1750Usermod::setup()
   rawPirHigh = false;
   pirActive = false;
   lastPirActive = false;
+  motionArmedAfterBoot = false;
 
   if (!enabled) setNightLightState(NightLightState::Disabled);
   else if (nightLightState == NightLightState::Disabled) setNightLightState(NightLightState::Idle);
@@ -317,12 +319,14 @@ void LumaCorePirBh1750Usermod::setup()
     }
   }
 
+  // Selected driver begins only when the controlled night-light is enabled.
   if (enabled && initI2c()) {
-    sensorFound = initBh1750();
+    ambientLight.begin(Wire, millis());
+    syncLightReading(millis());
   }
 
   lastWledOn = bri > 0;
-  lastLuxRead = millis() - luxReadIntervalMs;
+  lastLuxRead = millis();
   initDone = true;
 }
 
@@ -341,10 +345,9 @@ void LumaCorePirBh1750Usermod::loop()
   if (nightLightState == NightLightState::Disabled) setNightLightState(NightLightState::Idle);
 
   unsigned long now = millis();
-  if (now - lastLuxRead >= luxReadIntervalMs) {
-    lastLuxRead = now;
-    readBh1750Lux();
-  }
+  // Polling is nonblocking; VEML7700 integrations and range settle on millis().
+  ambientLight.poll(now);
+  syncLightReading(now);
 
   if (now - lastPirCheck < LUMACORE_PIR_CHECK_INTERVAL_MS) return;
   lastPirCheck = now;
@@ -383,13 +386,10 @@ void LumaCorePirBh1750Usermod::addToJsonInfo(JsonObject& root)
   status.add(enabled ? F("enabled") : F("disabled"));
 
   JsonArray lux = user.createNestedArray(F("  light"));
-  if (luxValid) {
-    String luxText = String(lastLux, 1);
-    luxText += F(" lx");
-    lux.add(luxText);
-  } else {
-    lux.add(F("invalid"));
-  }
+  syncLightReading(millis());
+  char luxText[32];
+  lumacore::formatLightLux(luxText, sizeof(luxText), luxValid, lastLux);
+  lux.add(luxText);
 
   JsonArray dark = user.createNestedArray(F("  dark"));
   dark.add(isDark() ? F("yes") : F("no"));
@@ -416,6 +416,12 @@ void LumaCorePirBh1750Usermod::addToJsonInfo(JsonObject& root)
       break;
   }
 
+  JsonObject sensorInfo = root.createNestedObject(F("ambient_light"));
+  sensorInfo[F("sensor")] = ambientLight.name();
+  sensorInfo[F("status")] = sensorFound && !luxValid && ambientLight.reading().valid ? "stale" : ambientLight.status();
+  sensorInfo[F("valid")] = luxValid;
+  if (luxValid) sensorInfo[F("lux")] = lastLux;
+
 #ifdef LUMACORE_DEBUG_INFO
   JsonArray pirPinInfo = user.createNestedArray(F("Night Light debug pirPin"));
   pirPinInfo.add(pirPin);
@@ -437,18 +443,31 @@ void LumaCorePirBh1750Usermod::addToJsonInfo(JsonObject& root)
 #endif
 }
 
+void LumaCorePirBh1750Usermod::appendConfigData() {
+  // Form values, persisted LuxThreshold and sensor calculations all use physical lux.
+  oappend(R"LCSCALE((function(){
+const fields=Array.from(d.getElementsByName('AutoNightLight:LuxThreshold'));
+const input=fields.find(e=>e.type==='number');
+if(!input)return;
+input.min='0.1';input.step='0.1';
+addInfo('AutoNightLight:LuxThreshold',1,'lux');
+})();)LCSCALE");
+}
+
 void LumaCorePirBh1750Usermod::addToConfig(JsonObject& root)
 {
   JsonObject top = root.createNestedObject(FPSTR(_name));
-  top[FPSTR(_enabled)] = enabled;
+  // Service-only takeover suspends the usermod for this session, not in shared cfg.json.
   top[FPSTR(_luxThreshold)] = luxThreshold;
   top[FPSTR(_offDelaySec)] = offDelaySec;
+  top[FPSTR(_manualOffPauseSec)] = manualOffPauseSec;
   top[FPSTR(_transitionSec)] = transitionSec;
   top[FPSTR(_onPreset)] = onPreset;
 }
 
 bool LumaCorePirBh1750Usermod::readFromConfig(JsonObject& root)
 {
+  const float previousLuxThreshold = luxThreshold;
   int8_t oldPirPin = pirPin;
   int8_t oldSdaPin = sdaPin;
   int8_t oldSclPin = sclPin;
@@ -466,7 +485,9 @@ bool LumaCorePirBh1750Usermod::readFromConfig(JsonObject& root)
     configComplete = false;
   }
 
-  if (!top[FPSTR(_luxThreshold)].isNull()) configComplete &= getJsonValue(top[FPSTR(_luxThreshold)], luxThreshold, 5.0f);
+  if (!top[F("LuxThresholdTenths")].isNull()) {
+    luxThreshold = lumacore::thresholdLuxFromUnits(top[F("LuxThresholdTenths")].as<float>());
+  } else if (!top[FPSTR(_luxThreshold)].isNull()) configComplete &= getJsonValue(top[FPSTR(_luxThreshold)], luxThreshold, 5.0f);
   else {
     configComplete &= getJsonValue(top[F("luxThreshold")], luxThreshold, 5.0f);
     configComplete = false;
@@ -475,6 +496,13 @@ bool LumaCorePirBh1750Usermod::readFromConfig(JsonObject& root)
   if (!top[FPSTR(_offDelaySec)].isNull()) configComplete &= getJsonValue(top[FPSTR(_offDelaySec)], offDelaySec, 120);
   else {
     configComplete &= getJsonValue(top[F("offDelaySec")], offDelaySec, 120);
+    configComplete = false;
+  }
+
+  if (!top[FPSTR(_manualOffPauseSec)].isNull()) {
+    configComplete &= getJsonValue(top[FPSTR(_manualOffPauseSec)], manualOffPauseSec, 600);
+  } else {
+    configComplete &= getJsonValue(top[F("manualOffPauseSec")], manualOffPauseSec, 600);
     configComplete = false;
   }
 
@@ -496,13 +524,13 @@ bool LumaCorePirBh1750Usermod::readFromConfig(JsonObject& root)
 
   pirPin = LUMACORE_PIR_PIN;
   pirActiveHigh = LUMACORE_PIR_ACTIVE_HIGH != 0;
-  sdaPin = LUMACORE_BH1750_SDA_PIN;
-  sclPin = LUMACORE_BH1750_SCL_PIN;
-  bh1750Address = LUMACORE_BH1750_ADDRESS;
+  sdaPin = LUMACORE_LIGHT_SDA_PIN;
+  sclPin = LUMACORE_LIGHT_SCL_PIN;
   luxReadIntervalMs = LUMACORE_LUX_READ_INTERVAL_MS;
 
-  if (luxThreshold < 0.0f) luxThreshold = 0.0f;
+  luxThreshold = lumacore::thresholdLuxOrPrevious(luxThreshold, previousLuxThreshold);
   if (offDelaySec > 3600) offDelaySec = 3600;
+  if (manualOffPauseSec > 3600) manualOffPauseSec = 3600;
   if (transitionSec > 60) transitionSec = 60;
   if (onPreset > 250) onPreset = 250;
 
@@ -519,6 +547,7 @@ const char LumaCorePirBh1750Usermod::_legacyName[] PROGMEM = "LumaCorePIRBH1750"
 const char LumaCorePirBh1750Usermod::_enabled[] PROGMEM = "Enabled";
 const char LumaCorePirBh1750Usermod::_luxThreshold[] PROGMEM = "LuxThreshold";
 const char LumaCorePirBh1750Usermod::_offDelaySec[] PROGMEM = "OffDelaySec";
+const char LumaCorePirBh1750Usermod::_manualOffPauseSec[] PROGMEM = "ManualOffPauseSec";
 const char LumaCorePirBh1750Usermod::_transitionSec[] PROGMEM = "TransitionSec";
 const char LumaCorePirBh1750Usermod::_onPreset[] PROGMEM = "OnPreset";
 
