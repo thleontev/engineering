@@ -1064,7 +1064,7 @@
 				)
 			)
 			(property "Description" "Unpolarized capacitor, small symbol"
-				(at 0 0 0)
+				(at 0 -10.16 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -1114,7 +1114,7 @@
 						(xy -1.524 -0.508) (xy 1.524 -0.508)
 					)
 					(stroke
-						(width 0.3302)
+						(width 0.3048)
 						(type default)
 					)
 					(fill
@@ -7659,7 +7659,7 @@
 			(justify left bottom)
 		)
 		(uuid "5541b6cf-ebc2-4a1f-9c48-ad0a4f4662f8")
-		(property "Net Class" "DATA_LED"
+		(property "Netclass" "DATA_LED"
 			(at 247.0785 55.88 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7833,12 +7833,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "TP2")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -8153,12 +8147,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "U3")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -8315,12 +8303,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R17")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -8480,12 +8462,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "C12")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -8655,12 +8631,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "J_DEBUG1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -8820,12 +8790,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "C3")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -8982,12 +8946,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R15")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -9144,12 +9102,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R14")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -9437,12 +9389,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "J_I2C1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -9599,12 +9545,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R6")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -9921,12 +9861,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "U3")
 					(unit 2)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -10084,12 +10018,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "J_PWR1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -10246,12 +10174,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -10774,12 +10696,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "J_LED_PWR2")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -10936,12 +10852,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R5")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -11342,12 +11252,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R21")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -11632,12 +11536,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "J_LED_PWR1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -11791,12 +11689,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "H1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -11953,12 +11845,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "TP5")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -12115,12 +12001,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R13")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -12280,12 +12160,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "C6")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -12454,12 +12328,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "J_MIC1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -12617,12 +12485,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "F1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -12785,12 +12647,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "J_PIR1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -13351,12 +13207,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "U3")
 					(unit 4)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -13516,12 +13366,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "D1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -13799,12 +13643,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R2")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -14082,12 +13920,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "TP4")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -14245,12 +14077,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "F2")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -14654,9 +14480,6 @@
 						(name "RESET_BOTTOM")
 						(dnp yes)
 					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -14940,12 +14763,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "Q1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -15102,12 +14919,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R7")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -15383,12 +15194,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "H4")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -15545,12 +15350,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R12")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -15710,12 +15509,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "C7")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -15895,12 +15688,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "L1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -16057,12 +15844,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R10")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -16343,12 +16124,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "C9")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -16507,12 +16282,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "C1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -16672,12 +16441,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "C5")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -16959,12 +16722,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "C4")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -17121,12 +16878,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R8")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -17296,12 +17047,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "U1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -17823,12 +17568,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R3")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -17982,12 +17721,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "H3")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -18267,12 +18000,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "C8")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -18426,12 +18153,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "H2")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -18594,12 +18315,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "J_TOUCH1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -18756,12 +18471,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "FB1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -19039,12 +18748,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R20")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -19239,7 +18942,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "470uF"
+		(property "Value" "100uF"
 			(at 190.5 84.366 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19250,7 +18953,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:CP_Elec_6.3x7.7"
+		(property "Footprint" "Capacitor_SMD:CP_Elec_5x5.8"
 			(at 187.96 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -19272,7 +18975,7 @@
 				)
 			)
 		)
-		(property "Description" "470uF 10V 105C SMD D6.3x7.7"
+		(property "Description" "100uF 16V 105C SMD 5x5.8"
 			(at 187.96 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -19283,7 +18986,7 @@
 				)
 			)
 		)
-		(property "MPN" "EEEFTA471XAP"
+		(property "MPN" "EEE-FT1C101AR"
 			(at 187.96 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -19305,7 +19008,7 @@
 				)
 			)
 		)
-		(property "Specification" "470uF; 10V; 105°C; SMD 6.3x7.7mm"
+		(property "Specification" "100uF; 16V; 105°C; SMD 5x5.8mm"
 			(at 0 0 0)
 			(hide yes)
 			(show_name no)
@@ -19371,12 +19074,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "C14")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -19694,12 +19391,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "U3")
 					(unit 5)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -19976,12 +19667,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "U2")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -20144,12 +19829,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "Q3")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -20309,12 +19988,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "C2")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -20471,12 +20144,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "TP3")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -20670,12 +20337,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "U3")
 					(unit 3)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -20832,12 +20493,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R9")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -21360,12 +21015,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "R4")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)
@@ -21521,12 +21170,6 @@
 				(path "/0f90087d-7193-4cf3-a13b-061ce09665fe"
 					(reference "TP1")
 					(unit 1)
-					(variant
-						(name "RESET_BOTTOM")
-					)
-					(variant
-						(name "RESET_TOP")
-					)
 				)
 			)
 		)

@@ -1,0 +1,3 @@
+# Preserve original STEP model bytes and keep CAD data out of text diffs.
+lib/LumaCore.3dshapes/*.step binary
+lib/LumaCore.3dshapes/*.STEP binary
