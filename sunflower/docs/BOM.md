@@ -6,15 +6,15 @@
 
 | Наименование | Количество | Файл | Примечание |
 | --- | ---: | --- | --- |
-| Корпус | 1 | [body.stl](../3d-printing/stl/body.stl) | В 3MF назначен зелёный PETG |
-| Подставка-верх | 1 | [base-upper.stl](../3d-printing/stl/base-upper.stl) | В 3MF назначен зелёный PETG |
-| Подставка-низ | 1 | [base-lower.stl](../3d-printing/stl/base-lower.stl) | В 3MF назначен зелёный PETG |
-| Плафон-верх | 1 | [shade-upper.stl](../3d-printing/stl/shade-upper.stl) | В 3MF назначен белый PETG |
-| Плафон-низ | 1 | [shade-lower.stl](../3d-printing/stl/shade-lower.stl) | В 3MF назначен зелёный PETG |
-| Рассеиватель | 1 | [diffuser.stl](../3d-printing/stl/diffuser.stl) | В 3MF назначен белый PETG |
-| Лепесток | 14 по CAD | [petal.stl](../3d-printing/stl/petal.stl) | Жёлтый PETG; в 3MF размещено 15, то есть один дополнительный экземпляр |
+| Корпус | 1 | [body.stl](../stl/body.stl) | В 3MF назначен зелёный PETG |
+| Подставка-верх | 1 | [base-upper.stl](../stl/base-upper.stl) | В 3MF назначен зелёный PETG |
+| Подставка-низ | 1 | [base-lower.stl](../stl/base-lower.stl) | В 3MF назначен зелёный PETG |
+| Плафон-верх | 1 | [shade-upper.stl](../stl/shade-upper.stl) | В 3MF назначен белый PETG |
+| Плафон-низ | 1 | [shade-lower.stl](../stl/shade-lower.stl) | В 3MF назначен зелёный PETG |
+| Рассеиватель | 1 | [diffuser.stl](../stl/diffuser.stl) | В 3MF назначен белый PETG |
+| Лепесток | 14 по CAD | [petal.stl](../stl/petal.stl) | Жёлтый PETG; в 3MF размещено 15, то есть один дополнительный экземпляр |
 
-Параметры и раскладка: [файлы для печати](../3d-printing/README.md).
+Параметры и раскладка: [файлы для печати](../stl/README.md).
 
 ## Покупные компоненты
 
