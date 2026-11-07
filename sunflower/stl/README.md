@@ -1,18 +1,18 @@
 # Файлы для 3D-печати
 
-[sunflower.3mf](sunflower.3mf) — сохранённый проект печати для Bambu Studio с семью столами. Отдельные STL доступны в [stl/](stl/).
+[sunflower.3mf](sunflower.3mf) — сохранённый проект печати для Bambu Studio с семью столами. Отдельные STL расположены в этой же папке.
 
 ## Детали
 
 | Деталь | Файл | Количество на сборку |
 | --- | --- | ---: |
-| Корпус | [body.stl](stl/body.stl) | 1 |
-| Подставка-верх | [base-upper.stl](stl/base-upper.stl) | 1 |
-| Подставка-низ | [base-lower.stl](stl/base-lower.stl) | 1 |
-| Плафон-верх | [shade-upper.stl](stl/shade-upper.stl) | 1 |
-| Плафон-низ | [shade-lower.stl](stl/shade-lower.stl) | 1 |
-| Рассеиватель | [diffuser.stl](stl/diffuser.stl) | 1 |
-| Лепесток | [petal.stl](stl/petal.stl) | 14 по CAD; в 3MF размещено 15 |
+| Корпус | [body.stl](body.stl) | 1 |
+| Подставка-верх | [base-upper.stl](base-upper.stl) | 1 |
+| Подставка-низ | [base-lower.stl](base-lower.stl) | 1 |
+| Плафон-верх | [shade-upper.stl](shade-upper.stl) | 1 |
+| Плафон-низ | [shade-lower.stl](shade-lower.stl) | 1 |
+| Рассеиватель | [diffuser.stl](diffuser.stl) | 1 |
+| Лепесток | [petal.stl](petal.stl) | 14 по CAD; в 3MF размещено 15 |
 
 Единицы координат STL — миллиметры; масштаб импорта 100%. Ориентация отдельных STL соответствует исходному экспорту и может отличаться от ориентации для печати. В 3MF сохранены положения деталей на столах.
 
